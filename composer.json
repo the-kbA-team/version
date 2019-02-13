@@ -1,0 +1,31 @@
+{
+    "name": "kba-team/version",
+    "description": "Determine your project version from either a commit.json or from your git repository.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gregor J.",
+            "email": "gregor-j@users.noreply.github.com",
+            "role": "developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.5.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "kbATeam\\Version\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\kbATeam\\Version\\": "tests"
+        }
+    }
+}
