@@ -1,6 +1,13 @@
 <?php
 namespace kbATeam\Version;
 
+/**
+ * Interface IVersion
+ *
+ * @package kbATeam\Version
+ * @author  Gregor J.
+ * @license MIT
+ */
 interface IVersion extends \JsonSerializable
 {
     /**
