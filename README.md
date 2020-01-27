@@ -9,7 +9,7 @@ Determine your project version from either a commit.json or from your git reposi
 
 ## Usage
 
-`composer require kba-team/version:^1.0`
+`composer require kba-team/version`
 
 Simple usage in your PHP code:
 
