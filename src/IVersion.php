@@ -1,6 +1,8 @@
 <?php
 namespace kbATeam\Version;
 
+use JsonSerializable;
+
 /**
  * Interface IVersion
  *
@@ -8,7 +10,7 @@ namespace kbATeam\Version;
  * @author  Gregor J.
  * @license MIT
  */
-interface IVersion extends \JsonSerializable
+interface IVersion extends JsonSerializable
 {
     /**
      * Determine whether version information exists.
