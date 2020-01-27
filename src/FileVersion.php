@@ -42,7 +42,7 @@ class FileVersion extends AbstractVersion
      * Check if the JSON file exists.
      * @return bool
      */
-    private function fileExists()
+    private function fileExists(): bool
     {
         if ($this->fileExists === null) {
             $this->fileExists = file_exists($this->file);
@@ -54,7 +54,7 @@ class FileVersion extends AbstractVersion
      * Get the contents of the JSON encoded file.
      * @return array
      */
-    private function fileContents()
+    private function fileContents(): array
     {
         $result = [
             'branch' => null,

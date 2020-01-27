@@ -52,7 +52,7 @@ class GitVersion extends AbstractVersion
      * Is this a valid repository?
      * @return bool
      */
-    private function isRepo()
+    private function isRepo(): bool
     {
         if ($this->isRepo === null) {
             $this->isRepo = (is_dir($this->dir) && file_exists($this->head));

@@ -16,7 +16,7 @@ interface IVersion extends JsonSerializable
      * Determine whether version information exists.
      * @return bool
      */
-    public function exists();
+    public function exists(): bool;
 
     /**
      * Get the branch string.

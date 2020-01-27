@@ -44,7 +44,7 @@ class Version extends AbstractVersion
      * Determine the current version.
      * @return array
      */
-    private function determineVersion()
+    private function determineVersion(): array
     {
         $result = [
             'branch' => null,
