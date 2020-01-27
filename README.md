@@ -1,9 +1,7 @@
 # Version
 
 [![License: MIT][license-mit]](LICENSE)
-[![Build Status][build-status-master]][travis-ci]
-[![Maintainability][maintainability-badge]][maintainability]
-[![Test Coverage][coverage-badge]][coverage]
+[![Build Status][build-status-php5]][travis-ci]
 
 Determine your project version from either a commit.json or from your git repository.
 
@@ -32,8 +30,4 @@ if ($version->exists()) {
 
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
 [travis-ci]: https://travis-ci.org/the-kbA-team/version
-[build-status-master]: https://api.travis-ci.org/the-kbA-team/version.svg?branch=master
-[maintainability-badge]: https://api.codeclimate.com/v1/badges/26201a84222a60255c2c/maintainability
-[maintainability]: https://codeclimate.com/github/the-kbA-team/version/maintainability
-[coverage-badge]: https://api.codeclimate.com/v1/badges/26201a84222a60255c2c/test_coverage
-[coverage]: https://codeclimate.com/github/the-kbA-team/version/test_coverage
+[build-status-php5]: https://api.travis-ci.org/the-kbA-team/version.svg?branch=php5
