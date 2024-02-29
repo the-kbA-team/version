@@ -65,4 +65,3 @@ jobs:
         with:
           php_version: ${{ matrix.php_version }}
           configuration: phpstan.neon
-          path: Lib/
