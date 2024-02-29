@@ -14,12 +14,12 @@ namespace kbATeam\Version;
 class Version extends AbstractVersion
 {
     /**
-     * @var array of IVersion objects.
+     * @var array<int, IVersion> of IVersion objects.
      */
     private $versions;
 
     /**
-     * @var array Branch and commit.
+     * @var array<string, string|null> Branch and commit.
      */
     private $version;
 
@@ -34,6 +34,7 @@ class Version extends AbstractVersion
     /**
      * Register a new way to determine the version.
      * @param \kbATeam\Version\IVersion $version
+     * @return void
      */
     public function register(IVersion $version)
     {
@@ -42,7 +43,7 @@ class Version extends AbstractVersion
 
     /**
      * Determine the current version.
-     * @return array
+     * @return array<string, string|null>
      */
     private function determineVersion(): array
     {
@@ -65,7 +66,7 @@ class Version extends AbstractVersion
 
     /**
      * Get the branch string.
-     * @return string
+     * @return string|null
      */
     public function getBranch()
     {
@@ -77,7 +78,7 @@ class Version extends AbstractVersion
 
     /**
      * Get the latest commit ID.
-     * @return string
+     * @return string|null
      */
     public function getCommit()
     {

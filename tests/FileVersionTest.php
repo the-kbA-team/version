@@ -16,6 +16,9 @@ use kbATeam\Version\IVersion;
  */
 class FileVersionTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
     private $tempDir;
 
     use TempDirTrait;
@@ -23,11 +26,12 @@ class FileVersionTest extends \PHPUnit_Framework_TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     * @return void
      */
     protected function setUp()
     {
         parent::setUp();
-        $this->tempDir = static::tempdir();
+        $this->tempDir = self::tempdir();
         file_put_contents($this->tempDir.'/commit.json', json_encode([
             'branch' => 'master',
             'commit' => '9c9e437'
@@ -37,17 +41,19 @@ class FileVersionTest extends \PHPUnit_Framework_TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
+     * @return void
      */
     protected function tearDown()
     {
         parent::tearDown();
-        static::rmDir($this->tempDir);
+        self::rmDir($this->tempDir);
     }
 
     /**
      * Test retrieving branch and commit from a JSON encoded file.
      * @throws \PHPUnit_Framework_AssertionFailedError
      * @throws \PHPUnit_Framework_Exception
+     * @return void
      */
     public function testFileVersionRetrieval()
     {
@@ -56,8 +62,8 @@ class FileVersionTest extends \PHPUnit_Framework_TestCase
         static::assertTrue($fileVersion->exists());
         static::assertSame('master', $fileVersion->getBranch());
         static::assertSame('9c9e437', $fileVersion->getCommit());
-        $actual = json_encode($fileVersion);
-        $expected = json_encode([
+        $actual = (string)json_encode($fileVersion);
+        $expected = (string)json_encode([
             'branch' => 'master',
             'commit' => '9c9e437'
         ]);
@@ -66,6 +72,7 @@ class FileVersionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test retrieving commit from a JSON encoded file.
+     * @return void
      */
     public function testGettingCommit()
     {
@@ -75,6 +82,7 @@ class FileVersionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test retrieving branch from a JSON encoded file.
+     * @return void
      */
     public function testGettingBranch()
     {

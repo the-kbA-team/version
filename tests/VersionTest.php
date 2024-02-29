@@ -18,6 +18,9 @@ use kbATeam\Version\Version;
  */
 class VersionTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
     private $tempDir;
 
     use TempDirTrait;
@@ -25,11 +28,12 @@ class VersionTest extends \PHPUnit_Framework_TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     * @return void
      */
     protected function setUp()
     {
         parent::setUp();
-        $this->tempDir = static::tempdir();
+        $this->tempDir = self::tempdir();
         file_put_contents($this->tempDir.'/commit.json', json_encode([
             'branch' => 'retsam',
             'commit' => '765e9c9'
@@ -42,11 +46,12 @@ class VersionTest extends \PHPUnit_Framework_TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
+     * @return void
      */
     protected function tearDown()
     {
         parent::tearDown();
-        static::rmDir($this->tempDir);
+        self::rmDir($this->tempDir);
     }
 
     /**
@@ -54,6 +59,7 @@ class VersionTest extends \PHPUnit_Framework_TestCase
      * git repository.
      * @throws \PHPUnit_Framework_AssertionFailedError
      * @throws \PHPUnit_Framework_Exception
+     * @return void
      */
     public function testRetrievingFileVersion()
     {
@@ -64,8 +70,8 @@ class VersionTest extends \PHPUnit_Framework_TestCase
         static::assertTrue($version->exists());
         static::assertSame('retsam', $version->getBranch());
         static::assertSame('765e9c9', $version->getCommit());
-        $actual = json_encode($version);
-        $expected = json_encode([
+        $actual = (string)json_encode($version);
+        $expected = (string)json_encode([
             'branch' => 'retsam',
             'commit' => '765e9c9'
         ]);
@@ -78,6 +84,7 @@ class VersionTest extends \PHPUnit_Framework_TestCase
      * encoded file.
      * @throws \PHPUnit_Framework_AssertionFailedError
      * @throws \PHPUnit_Framework_Exception
+     * @return void
      */
     public function testRetrievingGitVersion()
     {
@@ -88,8 +95,8 @@ class VersionTest extends \PHPUnit_Framework_TestCase
         static::assertSame('9c9e437', $version->getCommit());
         static::assertTrue($version->exists());
         static::assertSame('master', $version->getBranch());
-        $actual = json_encode($version);
-        $expected = json_encode([
+        $actual = (string)json_encode($version);
+        $expected = (string)json_encode([
             'branch' => 'master',
             'commit' => '9c9e437'
         ]);
