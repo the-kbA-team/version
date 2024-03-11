@@ -34,7 +34,7 @@ class VersionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->tempDir = self::tempdir();
+        $this->tempDir = $this->tempdir();
         file_put_contents($this->tempDir.'/commit.json', json_encode([
             'branch' => 'retsam',
             'commit' => '765e9c9'
@@ -52,55 +52,51 @@ class VersionTest extends TestCase
     protected function tearDown(): void
     {
         parent::tearDown();
-        self::rmDir($this->tempDir);
+        $this->rmDir($this->tempDir);
     }
 
     /**
      * Test retrieving the version from the JSON encoded file rather that from the
      * git repository.
-     * @throws \PHPUnit_Framework_AssertionFailedError
-     * @throws \PHPUnit_Framework_Exception
      * @return void
      */
     public function testRetrievingFileVersion()
     {
         $version = new Version();
-        static::assertInstanceOf(IVersion::class, $version);
+        $this->assertInstanceOf(IVersion::class, $version);
         $version->register(new FileVersion($this->tempDir.'/commit.json'));
         //$version->register(new GitVersion($this->tempDir));
-        static::assertTrue($version->exists());
-        static::assertSame('retsam', $version->getBranch());
-        static::assertSame('765e9c9', $version->getCommit());
+        $this->assertTrue($version->exists());
+        $this->assertSame('retsam', $version->getBranch());
+        $this->assertSame('765e9c9', $version->getCommit());
         $actual = (string)json_encode($version);
         $expected = (string)json_encode([
             'branch' => 'retsam',
             'commit' => '765e9c9'
         ]);
-        static::assertJsonStringEqualsJsonString($expected, $actual);
+        $this->assertJsonStringEqualsJsonString($expected, $actual);
     }
 
 
     /**
      * Test retrieving the version from the git repository rather that from the JSON
      * encoded file.
-     * @throws \PHPUnit_Framework_AssertionFailedError
-     * @throws \PHPUnit_Framework_Exception
      * @return void
      */
     public function testRetrievingGitVersion()
     {
         $version = new Version();
-        static::assertInstanceOf(IVersion::class, $version);
+        $this->assertInstanceOf(IVersion::class, $version);
         $version->register(new GitVersion($this->tempDir));
         $version->register(new FileVersion($this->tempDir.'/commit.json'));
-        static::assertSame('9c9e437', $version->getCommit());
-        static::assertTrue($version->exists());
-        static::assertSame('master', $version->getBranch());
+        $this->assertSame('9c9e437', $version->getCommit());
+        $this->assertTrue($version->exists());
+        $this->assertSame('master', $version->getBranch());
         $actual = (string)json_encode($version);
         $expected = (string)json_encode([
             'branch' => 'master',
             'commit' => '9c9e437'
         ]);
-        static::assertJsonStringEqualsJsonString($expected, $actual);
+        $this->assertJsonStringEqualsJsonString($expected, $actual);
     }
 }

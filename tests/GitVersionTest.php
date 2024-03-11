@@ -32,7 +32,7 @@ class GitVersionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->tempDir = self::tempdir();
+        $this->tempDir = $this->tempdir();
         mkdir($this->tempDir.'/.git/refs/heads/', 0777, true);
         file_put_contents($this->tempDir.'/.git/HEAD', 'ref: refs/heads/master');
         file_put_contents($this->tempDir.'/.git/refs/heads/master', '9c9e4373dbd136a4f405a828a9ecf445f207e49c');
@@ -46,22 +46,20 @@ class GitVersionTest extends TestCase
     protected function tearDown(): void
     {
         parent::tearDown();
-        self::rmDir($this->tempDir);
+        $this->rmDir($this->tempDir);
     }
 
     /**
      * Test retrieving version information from git.
-     * @throws \PHPUnit_Framework_AssertionFailedError
-     * @throws \PHPUnit_Framework_Exception
      * @return void
      */
     public function testGitVersionRetrieval()
     {
         $gitVersion = new GitVersion($this->tempDir);
-        static::assertInstanceOf(IVersion::class, $gitVersion);
-        static::assertTrue($gitVersion->exists());
-        static::assertSame('master', $gitVersion->getBranch());
-        static::assertSame('9c9e437', $gitVersion->getCommit());
+        $this->assertInstanceOf(IVersion::class, $gitVersion);
+        $this->assertTrue($gitVersion->exists());
+        $this->assertSame('master', $gitVersion->getBranch());
+        $this->assertSame('9c9e437', $gitVersion->getCommit());
         $actual = (string)json_encode($gitVersion);
         $expected = (string)json_encode([
             'branch' => 'master',

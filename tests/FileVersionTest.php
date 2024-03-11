@@ -32,7 +32,7 @@ class FileVersionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->tempDir = self::tempdir();
+        $this->tempDir = $this->tempdir();
         file_put_contents($this->tempDir.'/commit.json', json_encode([
             'branch' => 'master',
             'commit' => '9c9e437'
@@ -47,28 +47,26 @@ class FileVersionTest extends TestCase
     protected function tearDown(): void
     {
         parent::tearDown();
-        self::rmDir($this->tempDir);
+        $this->rmDir($this->tempDir);
     }
 
     /**
      * Test retrieving branch and commit from a JSON encoded file.
-     * @throws \PHPUnit_Framework_AssertionFailedError
-     * @throws \PHPUnit_Framework_Exception
      * @return void
      */
     public function testFileVersionRetrieval()
     {
         $fileVersion = new FileVersion($this->tempDir.'/commit.json');
-        static::assertInstanceOf(IVersion::class, $fileVersion);
-        static::assertTrue($fileVersion->exists());
-        static::assertSame('master', $fileVersion->getBranch());
-        static::assertSame('9c9e437', $fileVersion->getCommit());
+        $this->assertInstanceOf(IVersion::class, $fileVersion);
+        $this->assertTrue($fileVersion->exists());
+        $this->assertSame('master', $fileVersion->getBranch());
+        $this->assertSame('9c9e437', $fileVersion->getCommit());
         $actual = (string)json_encode($fileVersion);
         $expected = (string)json_encode([
             'branch' => 'master',
             'commit' => '9c9e437'
         ]);
-        static::assertJsonStringEqualsJsonString($expected, $actual);
+        $this->assertJsonStringEqualsJsonString($expected, $actual);
     }
 
     /**
@@ -78,7 +76,7 @@ class FileVersionTest extends TestCase
     public function testGettingCommit()
     {
         $fileVersion = new FileVersion($this->tempDir.'/commit.json');
-        static::assertSame('9c9e437', $fileVersion->getCommit());
+        $this->assertSame('9c9e437', $fileVersion->getCommit());
     }
 
     /**
@@ -88,6 +86,6 @@ class FileVersionTest extends TestCase
     public function testGettingBranch()
     {
         $fileVersion = new FileVersion($this->tempDir.'/commit.json');
-        static::assertSame('master', $fileVersion->getBranch());
+        $this->assertSame('master', $fileVersion->getBranch());
     }
 }
