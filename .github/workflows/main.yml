@@ -28,21 +28,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check PHP syntax of config/phinx.php
+      - name: Check PHP syntax of package
         run: php -l src/ tests/
 
   phpunit:
     name: PHPUnit tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version: [ 7.2, 7.4, 8.0, 8.1, 8.2 ]
     steps:
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6
         with:
-          php_version: 7.4
+          php_version: ${{ matrix.php_version }}
       - uses: php-actions/phpunit@v3
         with:
-          version: 4.8
-          php_version: 7.4
+          php_version: ${{ matrix.php_version }}
           configuration: phpunit.xml
           bootstrap: vendor/autoload.php
           coverage_clover: clover.xml
