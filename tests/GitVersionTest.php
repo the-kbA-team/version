@@ -4,6 +4,7 @@ namespace Tests\kbATeam\Version;
 
 use kbATeam\Version\GitVersion;
 use kbATeam\Version\IVersion;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Tests\kbATeam\Version\GitVersionTest
@@ -14,8 +15,11 @@ use kbATeam\Version\IVersion;
  * @author  Gregor J.
  * @license MIT
  */
-class GitVersionTest extends \PHPUnit_Framework_TestCase
+class GitVersionTest extends TestCase
 {
+    /**
+     * @var string
+     */
     private $tempDir;
 
     use TempDirTrait;
@@ -23,11 +27,12 @@ class GitVersionTest extends \PHPUnit_Framework_TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
-        $this->tempDir = static::tempdir();
+        $this->tempDir = $this->tempdir();
         mkdir($this->tempDir.'/.git/refs/heads/', 0777, true);
         file_put_contents($this->tempDir.'/.git/HEAD', 'ref: refs/heads/master');
         file_put_contents($this->tempDir.'/.git/refs/heads/master', '9c9e4373dbd136a4f405a828a9ecf445f207e49c');
@@ -36,27 +41,27 @@ class GitVersionTest extends \PHPUnit_Framework_TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
+     * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
-        static::rmDir($this->tempDir);
+        $this->rmDir($this->tempDir);
     }
 
     /**
      * Test retrieving version information from git.
-     * @throws \PHPUnit_Framework_AssertionFailedError
-     * @throws \PHPUnit_Framework_Exception
+     * @return void
      */
     public function testGitVersionRetrieval()
     {
         $gitVersion = new GitVersion($this->tempDir);
-        static::assertInstanceOf(IVersion::class, $gitVersion);
-        static::assertTrue($gitVersion->exists());
-        static::assertSame('master', $gitVersion->getBranch());
-        static::assertSame('9c9e437', $gitVersion->getCommit());
-        $actual = json_encode($gitVersion);
-        $expected = json_encode([
+        $this->assertInstanceOf(IVersion::class, $gitVersion);
+        $this->assertTrue($gitVersion->exists());
+        $this->assertSame('master', $gitVersion->getBranch());
+        $this->assertSame('9c9e437', $gitVersion->getCommit());
+        $actual = (string)json_encode($gitVersion);
+        $expected = (string)json_encode([
             'branch' => 'master',
             'commit' => '9c9e437'
         ]);

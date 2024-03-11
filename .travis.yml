@@ -5,6 +5,8 @@ php:
 - 7.0
 - 7.1
 - 7.2
+- 7.4
+- 8.1
 env:
   global:
   - CC_TEST_REPORTER_ID=5ae2c3f73f4475bd0ada0a042a8f581dfeb12745ee9fbb3d1e590f15dbb0ec5c

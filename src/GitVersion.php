@@ -29,7 +29,7 @@ class GitVersion extends AbstractVersion
     private $isRepo;
 
     /**
-     * @var string The current branch name in the git repository.
+     * @var string|null The current branch name in the git repository.
      */
     private $branch;
 
@@ -62,7 +62,7 @@ class GitVersion extends AbstractVersion
 
     /**
      * Get the branch string.
-     * @return string
+     * @return string|null
      */
     public function getBranch()
     {

@@ -23,6 +23,9 @@ trait TempDirTrait
         ob_start();
         $result = system('mktemp -d', $exitCode);
         ob_end_clean();
+        if (!is_string($result)) {
+            throw new \RuntimeException('Could not create temporary directory!');
+        }
         if ($exitCode !== 0) {
             throw new \RuntimeException('Could not create temporary directory!');
         }
@@ -33,6 +36,7 @@ trait TempDirTrait
      * Remove a directory and all its contents.
      * @param string $dir
      * @throws \RuntimeException
+     * @return void
      */
     private static function rmDir($dir)
     {

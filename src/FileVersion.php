@@ -24,7 +24,7 @@ class FileVersion extends AbstractVersion
     private $fileExists;
 
     /**
-     * @var string Cache fileContents() function reply.
+     * @var array<string, string|null>  Cache fileContents() function reply.
      */
     private $fileContents;
 
@@ -52,7 +52,7 @@ class FileVersion extends AbstractVersion
 
     /**
      * Get the contents of the JSON encoded file.
-     * @return array
+     * @return array<string, string|null>
      */
     private function fileContents(): array
     {
@@ -63,6 +63,7 @@ class FileVersion extends AbstractVersion
         if ($this->fileExists()) {
             $jsonStr = file_get_contents($this->file);
             if ($jsonStr !== false) {
+                /** @var array<string, string> $json */
                 $json = json_decode($jsonStr, true);
                 if ($json !== null) {
                     if (array_key_exists('branch', $json)) {
@@ -80,7 +81,7 @@ class FileVersion extends AbstractVersion
 
     /**
      * Get the branch string.
-     * @return string
+     * @return string|null
      */
     public function getBranch()
     {
@@ -92,7 +93,7 @@ class FileVersion extends AbstractVersion
 
     /**
      * Get the latest commit ID.
-     * @return string
+     * @return string|null
      */
     public function getCommit()
     {

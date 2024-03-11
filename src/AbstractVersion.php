@@ -20,6 +20,7 @@ abstract class AbstractVersion implements IVersion
      * which is a value of any type other than a resource.
      * @since 5.4.0
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return [
@@ -39,13 +40,13 @@ abstract class AbstractVersion implements IVersion
 
     /**
      * Get the branch string.
-     * @return string
+     * @return string|null
      */
     abstract public function getBranch();
 
     /**
      * Get the latest commit ID.
-     * @return string
+     * @return string|null
      */
     abstract public function getCommit();
 }
