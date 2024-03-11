@@ -4,6 +4,7 @@ namespace Tests\kbATeam\Version;
 
 use kbATeam\Version\GitVersion;
 use kbATeam\Version\IVersion;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Tests\kbATeam\Version\GitVersionTest
@@ -14,7 +15,7 @@ use kbATeam\Version\IVersion;
  * @author  Gregor J.
  * @license MIT
  */
-class GitVersionTest extends \PHPUnit_Framework_TestCase
+class GitVersionTest extends TestCase
 {
     /**
      * @var string
@@ -28,7 +29,7 @@ class GitVersionTest extends \PHPUnit_Framework_TestCase
      * This method is called before a test is executed.
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->tempDir = self::tempdir();
@@ -42,7 +43,7 @@ class GitVersionTest extends \PHPUnit_Framework_TestCase
      * This method is called after a test is executed.
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         self::rmDir($this->tempDir);

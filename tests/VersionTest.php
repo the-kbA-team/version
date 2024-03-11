@@ -6,6 +6,7 @@ use kbATeam\Version\FileVersion;
 use kbATeam\Version\GitVersion;
 use kbATeam\Version\IVersion;
 use kbATeam\Version\Version;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Tests\kbATeam\Version\VersionTest
@@ -16,7 +17,7 @@ use kbATeam\Version\Version;
  * @author  Gregor J.
  * @license MIT
  */
-class VersionTest extends \PHPUnit_Framework_TestCase
+class VersionTest extends TestCase
 {
     /**
      * @var string
@@ -30,7 +31,7 @@ class VersionTest extends \PHPUnit_Framework_TestCase
      * This method is called before a test is executed.
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->tempDir = self::tempdir();
@@ -48,7 +49,7 @@ class VersionTest extends \PHPUnit_Framework_TestCase
      * This method is called after a test is executed.
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         self::rmDir($this->tempDir);

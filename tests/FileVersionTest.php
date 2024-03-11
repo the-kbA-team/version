@@ -4,6 +4,7 @@ namespace Tests\kbATeam\Version;
 
 use kbATeam\Version\FileVersion;
 use kbATeam\Version\IVersion;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Tests\kbATeam\Version\FileVersionTest
@@ -14,7 +15,7 @@ use kbATeam\Version\IVersion;
  * @author  Gregor J.
  * @license MIT
  */
-class FileVersionTest extends \PHPUnit_Framework_TestCase
+class FileVersionTest extends TestCase
 {
     /**
      * @var string
@@ -28,7 +29,7 @@ class FileVersionTest extends \PHPUnit_Framework_TestCase
      * This method is called before a test is executed.
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->tempDir = self::tempdir();
@@ -43,7 +44,7 @@ class FileVersionTest extends \PHPUnit_Framework_TestCase
      * This method is called after a test is executed.
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         self::rmDir($this->tempDir);
