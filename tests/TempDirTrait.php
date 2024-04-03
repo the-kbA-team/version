@@ -18,7 +18,7 @@ trait TempDirTrait
      * @return string
      * @throws \RuntimeException
      */
-    private static function tempdir()
+    private static function tempdir(): string
     {
         ob_start();
         $result = system('mktemp -d', $exitCode);
@@ -38,7 +38,7 @@ trait TempDirTrait
      * @throws \RuntimeException
      * @return void
      */
-    private static function rmDir($dir)
+    private static function rmDir(string $dir): void
     {
         if (!is_dir($dir)) {
             throw new \RuntimeException(sprintf("Directory %s doesn't exist", $dir));

@@ -53,7 +53,7 @@ class GitVersionTest extends TestCase
      * Test retrieving version information from git.
      * @return void
      */
-    public function testGitVersionRetrieval()
+    public function testGitVersionRetrieval(): void
     {
         $gitVersion = new GitVersion($this->tempDir);
         $this->assertInstanceOf(IVersion::class, $gitVersion);

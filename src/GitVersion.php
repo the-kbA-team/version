@@ -42,10 +42,10 @@ class GitVersion extends AbstractVersion
      * GitVersion constructor.
      * @param string $appDir The application directory.
      */
-    public function __construct($appDir)
+    public function __construct(string $appDir)
     {
-        $this->dir = $appDir.DIRECTORY_SEPARATOR.'.git';
-        $this->head = $this->dir.DIRECTORY_SEPARATOR.'HEAD';
+        $this->dir = $appDir . DIRECTORY_SEPARATOR . '.git';
+        $this->head = $this->dir . DIRECTORY_SEPARATOR . 'HEAD';
     }
 
     /**
@@ -64,7 +64,7 @@ class GitVersion extends AbstractVersion
      * Get the branch string.
      * @return string|null
      */
-    public function getBranch()
+    public function getBranch(): ?string
     {
         if ($this->branch === null && $this->isRepo()) {
             $lines = file($this->head);
@@ -81,16 +81,16 @@ class GitVersion extends AbstractVersion
      * Get the latest commit ID.
      * @return string
      */
-    public function getCommit()
+    public function getCommit(): string
     {
         if ($this->commit === null && $this->isRepo()) {
             /**
              * Build filepath from branch name.
              */
-            $refFile = $this->dir.DIRECTORY_SEPARATOR
-                       .'refs'.DIRECTORY_SEPARATOR
-                       .'heads'.DIRECTORY_SEPARATOR
-                       .$this->getBranch();
+            $refFile = $this->dir . DIRECTORY_SEPARATOR
+                . 'refs' . DIRECTORY_SEPARATOR
+                . 'heads' . DIRECTORY_SEPARATOR
+                . $this->getBranch();
             /**
              * read ref file
              */
