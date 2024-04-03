@@ -36,7 +36,7 @@ class Version extends AbstractVersion
      * @param \kbATeam\Version\IVersion $version
      * @return void
      */
-    public function register(IVersion $version)
+    public function register(IVersion $version): void
     {
         $this->versions[] = $version;
     }
@@ -68,7 +68,7 @@ class Version extends AbstractVersion
      * Get the branch string.
      * @return string|null
      */
-    public function getBranch()
+    public function getBranch(): ?string
     {
         if ($this->version === null) {
             $this->version = $this->determineVersion();
@@ -80,7 +80,7 @@ class Version extends AbstractVersion
      * Get the latest commit ID.
      * @return string|null
      */
-    public function getCommit()
+    public function getCommit(): ?string
     {
         if ($this->version === null) {
             $this->version = $this->determineVersion();

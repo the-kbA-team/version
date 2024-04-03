@@ -54,7 +54,7 @@ class FileVersionTest extends TestCase
      * Test retrieving branch and commit from a JSON encoded file.
      * @return void
      */
-    public function testFileVersionRetrieval()
+    public function testFileVersionRetrieval(): void
     {
         $fileVersion = new FileVersion($this->tempDir.'/commit.json');
         $this->assertInstanceOf(IVersion::class, $fileVersion);
@@ -73,7 +73,7 @@ class FileVersionTest extends TestCase
      * Test retrieving commit from a JSON encoded file.
      * @return void
      */
-    public function testGettingCommit()
+    public function testGettingCommit(): void
     {
         $fileVersion = new FileVersion($this->tempDir.'/commit.json');
         $this->assertSame('9c9e437', $fileVersion->getCommit());
@@ -83,7 +83,7 @@ class FileVersionTest extends TestCase
      * Test retrieving branch from a JSON encoded file.
      * @return void
      */
-    public function testGettingBranch()
+    public function testGettingBranch(): void
     {
         $fileVersion = new FileVersion($this->tempDir.'/commit.json');
         $this->assertSame('master', $fileVersion->getBranch());

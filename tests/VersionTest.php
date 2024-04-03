@@ -60,7 +60,7 @@ class VersionTest extends TestCase
      * git repository.
      * @return void
      */
-    public function testRetrievingFileVersion()
+    public function testRetrievingFileVersion(): void
     {
         $version = new Version();
         $this->assertInstanceOf(IVersion::class, $version);
@@ -83,7 +83,7 @@ class VersionTest extends TestCase
      * encoded file.
      * @return void
      */
-    public function testRetrievingGitVersion()
+    public function testRetrievingGitVersion(): void
     {
         $version = new Version();
         $this->assertInstanceOf(IVersion::class, $version);

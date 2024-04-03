@@ -20,8 +20,7 @@ abstract class AbstractVersion implements IVersion
      * which is a value of any type other than a resource.
      * @since 5.4.0
      */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'branch' => $this->getBranch(),
@@ -42,11 +41,11 @@ abstract class AbstractVersion implements IVersion
      * Get the branch string.
      * @return string|null
      */
-    abstract public function getBranch();
+    abstract public function getBranch(): ?string;
 
     /**
      * Get the latest commit ID.
      * @return string|null
      */
-    abstract public function getCommit();
+    abstract public function getCommit(): ?string;
 }

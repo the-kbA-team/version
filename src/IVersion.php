@@ -20,13 +20,13 @@ interface IVersion extends JsonSerializable
 
     /**
      * Get the branch string.
-     * @return string
+     * @return string|null
      */
-    public function getBranch();
+    public function getBranch(): ?string;
 
     /**
      * Get the latest commit ID.
-     * @return string
+     * @return string|null
      */
-    public function getCommit();
+    public function getCommit(): ?string;
 }

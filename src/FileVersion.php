@@ -33,7 +33,7 @@ class FileVersion extends AbstractVersion
      * deployment script.
      * @param string $file The JSON formatted file containig branch and commit.
      */
-    public function __construct($file)
+    public function __construct(string $file)
     {
         $this->file = $file;
     }
@@ -83,7 +83,7 @@ class FileVersion extends AbstractVersion
      * Get the branch string.
      * @return string|null
      */
-    public function getBranch()
+    public function getBranch(): ?string
     {
         if ($this->fileContents === null) {
             $this->fileContents = $this->fileContents();
@@ -95,7 +95,7 @@ class FileVersion extends AbstractVersion
      * Get the latest commit ID.
      * @return string|null
      */
-    public function getCommit()
+    public function getCommit(): ?string
     {
         if ($this->fileContents === null) {
             $this->fileContents = $this->fileContents();
