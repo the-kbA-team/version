@@ -79,9 +79,9 @@ class GitVersion extends AbstractVersion
 
     /**
      * Get the latest commit ID.
-     * @return string
+     * @return string|null
      */
-    public function getCommit(): string
+    public function getCommit(): ?string
     {
         if ($this->commit === null && $this->isRepo()) {
             /**
